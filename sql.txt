@@ -1,0 +1,16 @@
+
+-- สร้างตารางให้ตรงกับ JSON Key ในฟังก์ชัน sendDataToSupabase ของคุณ
+CREATE TABLE sensor_data (
+  id SERIAL PRIMARY KEY,
+  created_at TIMESTAMPTZ DEFAULT now(),
+  dust FLOAT,          -- ตรงกับ "dust" ในโค้ด
+  temp FLOAT,          -- ตรงกับ "temp" ในโค้ด
+  humi FLOAT,          -- ตรงกับ "humi" ในโค้ด
+  pres FLOAT,          -- ตรงกับ "pres" ในโค้ด
+  light INT,           -- ตรงกับ "light" ในโค้ด
+  sound INT            -- ตรงกับ "sound" ในโค้ด
+);
+
+-- ปิดการใช้งาน RLS เพื่อให้ ESP32 ส่งข้อมูลเข้าได้โดยตรง (สำหรับทดสอบ)
+ALTER TABLE sensor_data DISABLE ROW LEVEL SECURITY;
+
